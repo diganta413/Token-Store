@@ -8,13 +8,12 @@ const user = new mongoose.Schema({
 	lastName: {
 		type: String
 	},
+	email: {
+		type: String,
+	},
 	walletAddress: {
 		type: String,
 		required: true
-	},
-	password: {
-		type: String,
-		required: String
 	},
 	isAdmin: {
 		type: Boolean,

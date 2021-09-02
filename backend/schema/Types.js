@@ -4,26 +4,34 @@ const graphql = require("graphql")
 const {
     GraphQLBoolean, 
     GraphQLString, 
-    GraphQLInt,
-    GraphQLSchema,
     GraphQLFloat,
     GraphQLObjectType,
-    GraphQLID
+    GraphQLID,
+    GraphQLInt
 } = graphql
 
-
+// GraphQL Type for User
 const UserType = new GraphQLObjectType({
     name: "User",
     fields: () => ({
         id: {type: GraphQLID},
         firstName: {type: GraphQLString},
         lastName: {type: GraphQLString},
+        email: {type: GraphQLString},
         walletAddress: {type: GraphQLString},
-        password: {type: GraphQLString},
         isAdmin: {type: GraphQLBoolean}
     })
 })
 
+const NonceType = new GraphQLObjectType({
+    name: "Nonce",
+    fields: () => ({
+        nonce: {type: GraphQLInt},
+        status: {type: GraphQLInt}
+    })
+})
+
+// GraphQL Type for Product
 const ProductType = new GraphQLObjectType({
     name: "User",
     fields: () => ({
@@ -37,5 +45,6 @@ const ProductType = new GraphQLObjectType({
 
 module.exports = {
     UserType,
+    NonceType,
     ProductType
 }
