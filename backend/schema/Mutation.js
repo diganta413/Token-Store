@@ -6,16 +6,15 @@ const {
     GraphQLBoolean,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema,
+    GraphQLID,
     GraphQLNonNull,
     GraphQLObjectType
 } = graphql
 
-
 const Mutation = new GraphQLObjectType({
     name: "Mutation",
     fields: {
-        getNonce: {
+        getNonce: { // Generate nonce
             type: NonceType,
             args: {
                 address: { type: new GraphQLNonNull(GraphQLString) },
@@ -32,7 +31,7 @@ const Mutation = new GraphQLObjectType({
                 }
             }
         },
-        authenticate: {
+        authenticate: { // Create user
             type: UserType,
             args: {
                 firstName: { type: new GraphQLNonNull(GraphQLString) },
@@ -51,7 +50,45 @@ const Mutation = new GraphQLObjectType({
                 let res = await user.save()
                 return res
             }
-        }
+        },
+        update: { // Update user details
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                firstName: { type: new GraphQLNonNull(GraphQLString) },
+                lastName: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                address: { type: new GraphQLNonNull(GraphQLString) },
+                isAdmin: { type: new GraphQLNonNull(GraphQLBoolean) }
+            },
+            async resolve(parent, args) {
+                if (!args.id) return;
+
+                let res = await User.findByIdAndUpdate(args.id, {
+                    id: args.id,
+                    firstName: args.firstName,
+                    lastName: args.lastName,
+                    email: args.email,
+                    walletAddress: args.address,
+                    isAdmin: args.isAdmin
+                },{ new: true })
+
+                return res
+            }
+        },
+        delete: { // Delete user account
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            async resolve(parent, args) {
+                if (!args.id) return;
+
+                let res = await User.findByIdAndRemove(args.id).exec()
+                return res
+            }
+        },
+
     }
 })
 

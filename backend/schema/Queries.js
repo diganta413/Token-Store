@@ -6,7 +6,7 @@ const {
     GraphQLBoolean,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema,
+    GraphQLID,
     GraphQLNonNull,
     GraphQLObjectType
 } = graphql
@@ -17,12 +17,11 @@ const Query = new GraphQLObjectType({
         user: {
             type: UserType,
             args: {
-                email: { type: new GraphQLNonNull(GraphQLString) },
-                address: { type: new GraphQLNonNull(GraphQLString) }
+                id: { type: new GraphQLNonNull(GraphQLID) },
             },
-
             async resolve(parent, args) {
-                return null;
+                const user = await User.findById(args.id)
+                return user
             }
         }
     }
