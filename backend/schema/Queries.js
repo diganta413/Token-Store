@@ -1,6 +1,7 @@
 const User = require("../models/User.js")
+const Product = require("../models/Product")
 const graphql = require("graphql")
-const { UserType } = require("./Types.js")
+const { UserType,ProductType } = require("./Types.js")
 
 const {
     GraphQLBoolean,
@@ -23,7 +24,17 @@ const Query = new GraphQLObjectType({
                 const user = await User.findById(args.id)
                 return user
             }
-        }
+        },
+		product: {
+			type: ProductType,
+			args: {
+				id: { type: new GraphQLNonNull(GraphQLID) }
+			},
+			async resolve(parent,args) {
+				const product = Product.findById(args.id)
+				return product
+			}
+		}
     }
 })
 

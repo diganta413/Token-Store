@@ -33,7 +33,7 @@ const NonceType = new GraphQLObjectType({
 
 // GraphQL Type for Product
 const ProductType = new GraphQLObjectType({
-    name: "User",
+    name: "Product",
     fields: () => ({
         id: {type: GraphQLID},
         name: {type: GraphQLString},

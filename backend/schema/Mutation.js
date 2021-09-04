@@ -1,6 +1,7 @@
 const User = require("../models/User.js")
+const Product = require("../models/Product")
 const graphql = require("graphql")
-const { UserType, NonceType } = require("./Types.js")
+const { UserType, NonceType, ProductType } = require("./Types.js")
 
 const {
     GraphQLBoolean,
@@ -88,7 +89,57 @@ const Mutation = new GraphQLObjectType({
                 return res
             }
         },
-
+		createProduct: {
+			type: ProductType,
+			args: {
+				name: { type: new GraphQLNonNull(GraphQLString) },
+				category: { type: new GraphQLNonNull(GraphQLString) },
+				desc: { type: new GraphQLNonNull(GraphQLString) },
+				price: { type: new GraphQLNonNull(graphql.GraphQLFloat) }
+			},
+			async resolve(parent,args) {
+				if(!args.name || !args.category || !args.desc || !args.price)
+					return;
+			    const product = new Product({
+					name: args.name,
+					category: args.category,
+					desc: args.name,
+					price: args.price
+				})
+				const res = await product.save()
+				return res
+			}
+		},
+		deleteProduct: {
+			type: ProductType,
+			args: {
+				id: { type: new GraphQLNonNull(GraphQLID) }
+			},
+			async resolve(parent,args) {
+				if(!args.id)
+					return;
+				const res = await Product.findByIdAndRemove(args.id)
+				return res
+			}
+		},
+		updateProduct: {
+			type: ProductType,
+			args: {
+				name: { type: new GraphQLNonNull(GraphQLString) },
+				price: { type: new GraphQLNonNull(GraphQLString) },
+				desc: { type: new GraphQLNonNull(GraphQLString) },
+				category: { type: new GraphQLNonNull(GraphQLString) }
+			},
+			async resolve(parent,args) {
+				const res = await Product.findByIdAndUpdate(args.id , {
+					name: args.name,
+					desc: args.desc,
+					price: args.price,
+					category: args.category
+				})
+				return res
+			}
+		}
     }
 })
 
