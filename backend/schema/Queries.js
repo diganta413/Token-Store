@@ -9,7 +9,8 @@ const {
     GraphQLInt,
     GraphQLID,
     GraphQLNonNull,
-    GraphQLObjectType
+    GraphQLObjectType,
+	GraphQLList
 } = graphql
 
 const Query = new GraphQLObjectType({
@@ -33,6 +34,13 @@ const Query = new GraphQLObjectType({
 			async resolve(parent,args) {
 				const product = Product.findById(args.id)
 				return product
+			}
+		},
+		products: {
+			type: new GraphQLList(ProductType),
+			async resolve(parent,args) {
+				const products = await Product.find()
+				return products
 			}
 		}
     }
