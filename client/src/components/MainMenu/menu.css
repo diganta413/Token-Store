@@ -55,6 +55,7 @@
 .main-menu-container .wallet-address{
     color: #8b77ff;
     font-weight: 600;
+    margin-top: 10px;
 }
 
 .main-menu-container .user-details{
