@@ -1,0 +1,36 @@
+.featured-products{
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 12px;
+    row-gap: 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 960px) {
+    .featured-products{
+        display: block;
+    }
+
+    .featured-card{
+        margin-bottom: 12px;
+    }
+}
+
+.featured-card{
+    background-color: #2c2c2c;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.featured-img{
+    width: 100%;
+}
+
+.featured-img img{
+    width: 100%;
+}
+
+.featured-card .product-details{
+    padding: 10px;
+}

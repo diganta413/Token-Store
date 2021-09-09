@@ -53,16 +53,18 @@ const App = () => {
     // }
 
     return (
-        <GlobalContext.Provider value={{menuOpen, setMenuOpen}}>
+        <GlobalContext.Provider value={{ menuOpen, setMenuOpen }}>
             <div className="App">
                 <Router>
                     <Header />
-                    {menuOpen && <MainMenu />}
-                    <Switch>
-                        <Route to="/login" component={Auth} />
-                        <Route to="/" component={Home} />
-                        <Route to="/shop" component={Home} />
-                    </Switch>
+                    <MainMenu />
+                    <div className="page-container">
+                        <Switch>
+                            <Route path="/login" component={Auth} />
+                            <Route path="/" component={Home} />
+                            <Route path="/shop" component={Home} />
+                        </Switch>
+                    </div>
                 </Router>
             </div>
         </GlobalContext.Provider>

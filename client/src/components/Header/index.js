@@ -10,7 +10,8 @@ const Header = () => {
     const { setMenuOpen, menuOpen } = useContext(GlobalContext)
 
     return (
-        <div className="fixed-header">
+        <div className="fixed-header"
+        style={menuOpen ? {backgroundColor: '#262626f6', backdropFilter: 'blur(0px)'} : {}}>
             <div className="header-content">
                 <div className="brand">
                     <Link to="/">
