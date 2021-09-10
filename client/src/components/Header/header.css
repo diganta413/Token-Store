@@ -12,9 +12,29 @@
     justify-content: space-between;
 }
 
+.header-content .brand{
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+}
+
+
+.header-content .brand a{
+    height: 36px;
+}
+
 .header-content .brand img{
     height: 36px;
     width: 36px;
+}
+
+.header-content .page-name{
+    text-transform: capitalize;
+    padding: 8px 12px 6px 12px;
+    border-radius: 27px;
+    background-image: linear-gradient(#181818, #131313D4);
+    border: 0.75px solid black;
+    font-weight: 700;
 }
 
 .header-content .collection{

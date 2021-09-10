@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import "./App.css"
 import getWeb3 from "./getWeb3"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './modules/Home/home'
 import Auth from './modules/Authentication/auth'
 import { GlobalContext } from './utils/Context'
 import MainMenu from './components/MainMenu'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 
 
 const App = () => {
 
     const [web3, setWeb3] = useState(null)
 
+    const curUser = JSON.parse(localStorage.getItem('currentUser'))
+
     // Gloabl States
 
     const [menuOpen, setMenuOpen] = useState(false)
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         const connect = async () => {
@@ -52,17 +56,23 @@ const App = () => {
     //     return <div>Loading Web3, accounts, and contract...</div>;
     // }
 
+    useEffect(() => {
+        if(curUser && !user){
+            setUser(curUser)
+        }
+    }, [curUser])
+
     return (
-        <GlobalContext.Provider value={{ menuOpen, setMenuOpen }}>
+        <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user }}>
             <div className="App">
                 <Router>
                     <Header />
                     <MainMenu />
                     <div className="page-container">
                         <Switch>
-                            <Route path="/login" component={Auth} />
-                            <Route path="/" component={Home} />
-                            <Route path="/shop" component={Home} />
+                            <Route path="/login" exact component={Auth} />
+                            <PrivateRoute path="/" component={Home}></PrivateRoute>
+                            <PrivateRoute path="/shop" component={Home}></PrivateRoute>
                         </Switch>
                     </div>
                 </Router>
