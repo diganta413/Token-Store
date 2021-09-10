@@ -4,7 +4,7 @@ import "./button.css"
 const CustomButton = ({label, action, margin}) => {
     return (
         <button className="custom-btn" style={{margin: margin}}>
-            {label}
+            <span>{label}</span>
         </button>
     )
 }
