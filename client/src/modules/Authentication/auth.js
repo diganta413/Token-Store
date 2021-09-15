@@ -2,10 +2,27 @@ import React from 'react'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import "./auth.css"
 import Logo from "../../assets/logo.png"
+import web3modal from "web3modal"
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const Auth = () => {
-
+	const provider;
     const connectWallet = () => {
+		const providerOptions = {
+  			walletconnect: {
+    		package: WalletConnectProvider, // required
+    		options: {
+      			infuraId: "INFURA_ID" // required
+    		}
+  		}
+		};
+
+		const web3modal = new web3modal({
+			cacheProvider: true,
+			providerOptions
+		})
+
+		provider = web3modal.connect();
 
     }
 
