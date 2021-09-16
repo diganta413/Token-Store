@@ -31,6 +31,10 @@
     font-weight: 600;
 }
 
+.web3modal-modal-lightbox{
+    z-index: 9999 !important;
+}
+
 @media (max-width: 576px) {
     .auth-box{
         width: calc(100vw - 32px);

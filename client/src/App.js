@@ -8,6 +8,16 @@ import Auth from './modules/Authentication/auth'
 import { GlobalContext } from './utils/Context'
 import MainMenu from './components/MainMenu'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider
+} from "@apollo/client";
+
+const client = new ApolloClient({
+    uri: 'http://localhost:5000/graphql',
+    cache: new InMemoryCache()
+})
 
 
 const App = () => {
@@ -57,27 +67,29 @@ const App = () => {
     // }
 
     useEffect(() => {
-        if(curUser && !user){
+        if (curUser && !user) {
             setUser(curUser)
         }
     }, [curUser])
 
     return (
-        <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user }}>
-            <div className="App">
-                <Router>
-                    <Header />
-                    <MainMenu />
-                    <div className="page-container">
-                        <Switch>
-                            <Route path="/login" exact component={Auth} />
-                            <PrivateRoute path="/" component={Home}></PrivateRoute>
-                            <PrivateRoute path="/shop" component={Home}></PrivateRoute>
-                        </Switch>
-                    </div>
-                </Router>
-            </div>
-        </GlobalContext.Provider>
+        <ApolloProvider client={client}>
+            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user }}>
+                <div className="App">
+                    <Router>
+                        <Header />
+                        <MainMenu />
+                        <div className="page-container">
+                            <Switch>
+                                <Route path="/login" exact component={Auth} />
+                                <PrivateRoute path="/" component={Home}></PrivateRoute>
+                                <PrivateRoute path="/shop" component={Home}></PrivateRoute>
+                            </Switch>
+                        </div>
+                    </Router>
+                </div>
+            </GlobalContext.Provider>
+        </ApolloProvider>
     );
 }
 
