@@ -82,8 +82,10 @@ const App = () => {
                         <div className="page-container">
                             <Switch>
                                 <Route path="/login" exact component={Auth} />
-                                <PrivateRoute path="/" component={Home}></PrivateRoute>
-                                <PrivateRoute path="/shop" component={Home}></PrivateRoute>
+                                {/* <PrivateRoute path="/" component={Home}></PrivateRoute>
+                                <PrivateRoute path="/shop" component={Home}></PrivateRoute> */}
+                                <Route path="/" component={Home}></Route>
+                                <Route path="/shop" component={Home}></Route>
                             </Switch>
                         </div>
                     </Router>

@@ -10,6 +10,8 @@ import IMG from "../../assets/avatar.jpeg"
 const Header = () => {
     const { setMenuOpen, menuOpen, user } = useContext(GlobalContext)
     const history = useHistory()
+    let pageName = history.location.pathname.split('/')[1]
+    pageName = pageName ? pageName : 'Home'
 
     return (
         <div className="fixed-header"
@@ -20,10 +22,10 @@ const Header = () => {
                         <img src={Logo} alt="/" />
                     </Link>
                     <div className="page-name">
-                        {history.location.pathname.split('/')[1]}
+                        {pageName}
                     </div>
                 </div>
-                {user && (
+                {!user && (
                     <div className="collection">
                         <Avatar img={IMG} size='small' />
                         <div class={`menu-icon ${menuOpen ? 'close-icon' : ''}`}
