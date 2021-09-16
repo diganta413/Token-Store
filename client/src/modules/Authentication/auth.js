@@ -7,9 +7,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const Auth = () => {
 	const provider;
-    const connectWallet = () => {
-		const providerOptions = {
-  			walletconnect: {
+    const providerOptions = {
+  	walletconnect: {
     		package: WalletConnectProvider, // required
     		options: {
       			infuraId: "INFURA_ID" // required
@@ -20,8 +19,9 @@ const Auth = () => {
 		const web3modal = new web3modal({
 			cacheProvider: true,
 			providerOptions
-		})
-
+    })
+		
+    const connectWallet = () => {
 		provider = web3modal.connect();
 
     }
