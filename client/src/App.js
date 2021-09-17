@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "./App.css"
 import getWeb3 from "./getWeb3"
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './modules/Home/home'
 import Auth from './modules/Authentication/auth'
@@ -13,6 +13,7 @@ import {
     InMemoryCache,
     ApolloProvider
 } from "@apollo/client";
+import Shop from './modules/Shop/shop'
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000/graphql',
@@ -24,12 +25,16 @@ const App = () => {
 
     const [web3, setWeb3] = useState(null)
 
+    const history = useHistory()
+    console.log(history)
+
     const curUser = JSON.parse(localStorage.getItem('currentUser'))
 
     // Gloabl States
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [user, setUser] = useState(null)
+    const [page, setPage] = useState('Home')
 
     useEffect(() => {
         const connect = async () => {
@@ -74,18 +79,18 @@ const App = () => {
 
     return (
         <ApolloProvider client={client}>
-            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user }}>
+            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user, setPage }}>
                 <div className="App">
                     <Router>
-                        <Header />
+                        <Header page={page}/>
                         <MainMenu />
                         <div className="page-container">
                             <Switch>
                                 <Route path="/login" exact component={Auth} />
                                 {/* <PrivateRoute path="/" component={Home}></PrivateRoute>
                                 <PrivateRoute path="/shop" component={Home}></PrivateRoute> */}
-                                <Route path="/" component={Home}></Route>
-                                <Route path="/shop" component={Home}></Route>
+                                <Route path="/" component={Home} exact></Route>
+                                <Route path="/shop" component={Shop} exact></Route>
                             </Switch>
                         </div>
                     </Router>

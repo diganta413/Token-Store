@@ -1,0 +1,16 @@
+.message{
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.message.error{
+    background-color: red;
+    color: #fff;
+}
+
+.message.success{
+    background-color: #00ff95;
+    color: #a1a1a1;
+}

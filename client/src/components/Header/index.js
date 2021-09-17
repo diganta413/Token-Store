@@ -7,11 +7,9 @@ import { GlobalContext } from '../../utils/Context'
 import Avatar from '../Avatar'
 import IMG from "../../assets/avatar.jpeg"
 
-const Header = () => {
+const Header = (props) => {
     const { setMenuOpen, menuOpen, user } = useContext(GlobalContext)
-    const history = useHistory()
-    let pageName = history.location.pathname.split('/')[1]
-    pageName = pageName ? pageName : 'Home'
+    let pageName = props.page
 
     return (
         <div className="fixed-header"

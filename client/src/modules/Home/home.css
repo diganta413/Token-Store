@@ -7,6 +7,34 @@
     cursor: pointer;
 }
 
+.product-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.explore-more{
+    margin-top: 16px;
+    display: block;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    background-image: radial-gradient(circle at top left,#ffae00,#ff5739);
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.home-banner{
+    background-image: url('https://shopsellers.in/wp-content/uploads/2020/10/wireless-banner.jpg');
+    margin-top: 16px;
+    height: 600px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
 @media (max-width: 960px) {
     .featured-products{
         display: block;
@@ -14,6 +42,10 @@
 
     .featured-card{
         margin-bottom: 12px;
+    }
+
+    .home-banner{
+        height: 200px;
     }
 }
 

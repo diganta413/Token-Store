@@ -1,19 +1,19 @@
-import {useMutation,useQuery,gql} from "@apollo/client"
+import { useMutation, useQuery, gql } from "@apollo/client"
 
 export const GET_PRODUCT = gql`
-		Query Product($id: ID!){
+	query Product($id: ID!){
 		product(id: $id){
 			name,
 			category,
 			price,
 			desc
 		}
-		}
+	}
 		
 `
 
 export const GET_USER = gql`
-	Query User($id: ID!){
+	query User($id: ID!){
 		user(id: $id){
 			firstName,
 			lastName,
@@ -24,8 +24,8 @@ export const GET_USER = gql`
 	}
 `
 
-const GET_PRODUCTS = gql`
-	{
+export const GET_PRODUCTS = gql`
+	query Products{
 		products{
 			id,
 			name,
@@ -36,4 +36,3 @@ const GET_PRODUCTS = gql`
 	}
 `
 
-export default getProducts

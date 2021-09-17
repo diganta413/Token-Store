@@ -1,0 +1,21 @@
+.right-bar{
+    padding: 10px;
+    min-width: 240px;
+    background-image: radial-gradient(circle at top left,#ffae00,#ff5739);
+    height: calc(100vh - 100px);
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.right-bar.expand{
+    height: 200px;
+}
+
+@media (max-width: 900px) {
+    .right-bar{
+        height: 44px;
+        margin-bottom: 16px;
+        overflow-y: hidden;
+        transition: 0.5s;
+    }
+}
