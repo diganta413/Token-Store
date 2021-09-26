@@ -4,6 +4,24 @@
     column-gap: 16px;
 }
 
+.product-page div{
+    height: fit-content;
+}
+
+@media (max-width: 976px) {
+    .product-page{
+        display: block;
+    }
+    
+    .pd-details{
+        margin-top: 16px;
+    }
+
+    .pd-buy{
+        margin-top: 16px;
+    }
+}
+
 .pd-image img{
     width: 100%;
 }

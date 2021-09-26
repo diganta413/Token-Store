@@ -8,7 +8,7 @@ import { GlobalContext } from '../../utils/Context';
 
 const MainMenu = () => {
 
-    const { menuOpen } = useContext(GlobalContext)
+    const { menuOpen, setMenuOpen } = useContext(GlobalContext)
     useEffect(() => {
         if(menuOpen){
             document.body.style.overflow = 'hidden'
@@ -58,7 +58,8 @@ const MainMenu = () => {
                         {menuOptions.map((mp, i) => (
                             <li>
                                 <FadeIn delay={300 * (i + 1)}>
-                                    <Link to={`${mp.path}`}>{mp.name}</Link>
+                                    <Link onClick={() => setMenuOpen(false)}
+                                    to={`${mp.path}`}>{mp.name}</Link>
                                 </FadeIn>
                             </li>
                         ))}

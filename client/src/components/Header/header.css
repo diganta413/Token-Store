@@ -37,6 +37,15 @@
     font-weight: 700;
 }
 
+@media (max-width: 576px) {
+    .header-content .page-name{
+        max-width: 140px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
 .header-content .collection{
   display: flex;
   align-items: center;
