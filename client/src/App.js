@@ -14,6 +14,7 @@ import {
     ApolloProvider
 } from "@apollo/client";
 import Shop from './modules/Shop/shop'
+import Product from './modules/Product/product'
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000/graphql',
@@ -91,6 +92,7 @@ const App = () => {
                                 <PrivateRoute path="/shop" component={Home}></PrivateRoute> */}
                                 <Route path="/" component={Home} exact></Route>
                                 <Route path="/shop" component={Shop} exact></Route>
+                                <Route path="/product/:id" component={Product} exact></Route>
                             </Switch>
                         </div>
                     </Router>

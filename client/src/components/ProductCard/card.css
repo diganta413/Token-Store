@@ -1,0 +1,41 @@
+@media (max-width: 960px) {
+    .product-card{
+        margin-bottom: 12px;
+    }
+}
+
+.product-card{
+    background-color: #2c2c2c;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.product-img{
+    width: 100%;
+}
+
+.product-img img{
+    width: 100%;
+}
+
+.product-details{
+    padding: 10px;
+}
+
+.product-details h3{
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.product-details h4{
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: yellow;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 20px;
+}

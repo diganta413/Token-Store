@@ -6,8 +6,8 @@
 }
 
 .message.error{
-    background-color: red;
-    color: #fff;
+    background-color: #ff7171;
+    color: #020202;
 }
 
 .message.success{

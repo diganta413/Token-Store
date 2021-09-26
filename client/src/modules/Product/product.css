@@ -1,0 +1,31 @@
+.product-page{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    column-gap: 16px;
+}
+
+.pd-image img{
+    width: 100%;
+}
+
+.pd-buy{
+    width: 100%;
+    background: #313131;
+    color: #fff;
+    border: 0.75px solid black;
+    outline: 0;
+    padding: 12px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px #1a1a1adc;
+    font-size: 16px;
+}
+
+.price-display{
+    width: 100%;
+    font-size: 20px;
+    background-color: yellow;
+    padding: 6px 12px;
+    color: #000;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}

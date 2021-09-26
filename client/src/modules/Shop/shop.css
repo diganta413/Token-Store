@@ -19,6 +19,7 @@
     overflow-y: scroll;
     height: calc(100vh - 160px);
     padding-right: 4px;
+    min-width: calc(100vw - 288px);
 }
 
 .shop-products{

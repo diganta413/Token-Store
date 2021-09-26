@@ -40,29 +40,7 @@
         display: block;
     }
 
-    .featured-card{
-        margin-bottom: 12px;
-    }
-
     .home-banner{
         height: 200px;
     }
-}
-
-.featured-card{
-    background-color: #2c2c2c;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.featured-img{
-    width: 100%;
-}
-
-.featured-img img{
-    width: 100%;
-}
-
-.featured-card .product-details{
-    padding: 10px;
 }

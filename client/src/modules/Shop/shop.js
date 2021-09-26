@@ -1,11 +1,17 @@
+import { useQuery } from '@apollo/client'
+import { Link } from 'react-router-dom'
 import React, { useContext, useEffect } from 'react'
+import Spinner from '../../components/Loader/Spinner'
+import Error from '../../components/Messages/Error'
+import ProductCard from '../../components/ProductCard/ProductCard'
 import ShopRightBar from '../../components/ShopRightBar/ShopRightBar'
+import { GET_PRODUCTS } from '../../graphql/Queries'
 import { GlobalContext } from '../../utils/Context'
-import Featured from '../Home/Featured'
 import "./shop.css"
 
 const Shop = () => {
     const { setPage } = useContext(GlobalContext)
+    const { loading, error, data } = useQuery(GET_PRODUCTS)
     useEffect(() => {
         setPage('Shop')
     }, [])
@@ -16,13 +22,21 @@ const Shop = () => {
                     <input placeholder="Search products" type="search"></input>
                 </div>
                 <div className="pd-container">
-                    <div className="shop-products">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 112].map(p => (
-                            <Featured
-                                key={p}
-                                product={p} />
-                        ))}
-                    </div>
+                    {loading ? (
+                        <Spinner />
+                    ) : !error ? (
+
+                        <div className="shop-products">
+                            {data.products.map(p => (
+                                <Link to={`/product/${p.id}`}>
+                                    <ProductCard
+                                        key={p.id}
+                                        product={p} />
+                                </Link>
+                            ))}
+                        </div>
+
+                    ) : <Error message={"Unable to fetch products."} />}
                 </div>
             </div>
             <div className="field">
