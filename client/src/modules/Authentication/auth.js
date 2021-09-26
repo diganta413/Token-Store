@@ -62,7 +62,12 @@ const Auth = () => {
 
 
     const signMessage = (web3, account, nonce) => {
-
+		web3.eth.personal.sign(account,nonce,(err,result) => {
+			if(err)
+			console.log(err)
+			else
+			console.log(result)
+		})
     }
 
     const connectWallet = async () => {
