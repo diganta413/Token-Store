@@ -61,8 +61,8 @@ const Auth = () => {
     });
 
 
-    const signMessage = (web3, account, nonce) => {
-		web3.eth.personal.sign(account,nonce,(err,result) => {
+    const signMessage = (web3, account, nbj) => {
+		web3.eth.personal.sign(nbj.nonce, account,(err,result) => {
 			if(err)
 			console.log(err)
 			else
@@ -79,6 +79,7 @@ const Auth = () => {
         
         let res = await getNonce({ variables: { address: accounts[0]}})
         .then(res => res.data.getNonce)
+        console.log(res)
         signMessage(wb, accounts[0], res)
     }
 
