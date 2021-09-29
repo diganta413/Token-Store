@@ -24,7 +24,7 @@ const Mutation = new GraphQLObjectType({
                 let res = await User.findOne({ walletAddress: args.address })
                 if (res) {
                     let nonce = Math.floor(Math.random() * 1000000)
-                    return { nonce, status: 1 }
+                    return { nonce, status: 1, userId: res._id }
                 }
                 else {
                     let nonce = Math.floor(Math.random() * 1000000)

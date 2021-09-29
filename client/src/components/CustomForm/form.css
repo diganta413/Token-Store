@@ -1,0 +1,15 @@
+.custom-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #2c2c2c;
+    padding: 22px;
+    border-radius: 4px;
+}
+
+@media (max-width: 567px) {
+    .custom-form{
+        width: calc(100vw - 10px) !important;
+    }
+}

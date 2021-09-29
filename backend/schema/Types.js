@@ -27,7 +27,8 @@ const NonceType = new GraphQLObjectType({
     name: "Nonce",
     fields: () => ({
         nonce: {type: GraphQLInt},
-        status: {type: GraphQLInt}
+        status: {type: GraphQLInt},
+        userId: {type: GraphQLID}
     })
 })
 

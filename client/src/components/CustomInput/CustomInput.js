@@ -1,10 +1,15 @@
 import React from 'react'
+import "./input.css"
 
-const CustomInput = () => {
+const CustomInput = (props) => {
     return (
-        <div>
-            
-        </div>
+        <input
+        className="custom-input"
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={(e) => props.setValue(e.target.value)}
+        {...props}
+        ></input>
     )
 }
 

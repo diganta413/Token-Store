@@ -9,6 +9,7 @@ import WalletLink from "walletlink"
 import Web3 from 'web3'
 import { useMutation } from '@apollo/client'
 import { GET_NONCE } from '../../graphql/Mutation'
+import UserFormModal from '../../components/Modals/UserFormModal'
 
 const Auth = () => {
 
@@ -62,12 +63,30 @@ const Auth = () => {
 
 
     const signMessage = (web3, account, nbj) => {
-		web3.eth.personal.sign(nbj.nonce, account,(err,result) => {
-			if(err)
-			console.log(err)
-			else
-			console.log(result)
-		})
+        let message = `You are signing in to Token Store: ${nbj.nonce}`
+        web3.eth.personal.sign(message, account, async (err, result) => {
+            if (err)
+                console.log(err)
+            else {
+                const signingAddress = await web3.eth.accounts.recover(message,
+                    result);
+                if (account === signingAddress) {
+                    localStorage.setItem('publicAddress', account)
+
+                    if (nbj.status === 0) {
+                        alert("Created")
+                        // history.push("/create")
+                    }
+                    else {
+                        // userLogin(nonce.token)
+                        console.log(nbj)
+                    }
+                }
+                else {
+                    alert("Signature not verified.")
+                }
+            }
+        })
     }
 
     const connectWallet = async () => {
@@ -76,15 +95,16 @@ const Auth = () => {
         const wb = new Web3(provider);
         let accounts = await wb.eth.getAccounts()
             .then(acc => acc)
-        
-        let res = await getNonce({ variables: { address: accounts[0]}})
-        .then(res => res.data.getNonce)
+
+        let res = await getNonce({ variables: { address: accounts[0] } })
+            .then(res => res.data.getNonce)
         console.log(res)
         signMessage(wb, accounts[0], res)
     }
 
     return (
         <div className="auth-container">
+            <UserFormModal />
             <div className="auth-box">
                 <div className="brand">
                     <img src={Logo} alt="/" />

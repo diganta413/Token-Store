@@ -1,11 +1,11 @@
 import React from 'react'
 import "./button.css"
 
-const CustomButton = ({label, action, margin, width}) => {
+const CustomButton = (props) => {
     return (
-        <button className="custom-btn" style={{margin: margin, width: width}}
-        onClick={action}>
-            <span>{label}</span>
+        <button className="custom-btn" style={{margin: props.margin, width: props.width}}
+        onClick={props.action} {...props}>
+            <span>{props.label}</span>
         </button>
     )
 }
