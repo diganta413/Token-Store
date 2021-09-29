@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import "./header.css"
 import Logo from "../../assets/logo.png"
@@ -8,8 +8,18 @@ import Avatar from '../Avatar'
 import IMG from "../../assets/avatar.jpeg"
 
 const Header = (props) => {
-    const { setMenuOpen, menuOpen, user } = useContext(GlobalContext)
+    const { setMenuOpen, menuOpen } = useContext(GlobalContext)
+    // const [user, setUser] = useState(null)
     let pageName = props.page
+
+    const user = JSON.parse(localStorage.getItem('User'))
+    console.log(user)
+
+    // useEffect(() => {
+    //     if(curUser && !user){
+    //        setUser(curUser) 
+    //     }
+    // }, [curUser, user])
 
     return (
         <div className="fixed-header"
@@ -23,7 +33,7 @@ const Header = (props) => {
                         {pageName}
                     </div>
                 </div>
-                {!user && (
+                {user && (
                     <div className="collection">
                         <Avatar img={IMG} size='small' />
                         <div class={`menu-icon ${menuOpen ? 'close-icon' : ''}`}

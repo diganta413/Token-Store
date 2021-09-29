@@ -9,6 +9,7 @@ import { GlobalContext } from '../../utils/Context';
 const MainMenu = () => {
 
     const { menuOpen, setMenuOpen } = useContext(GlobalContext)
+    const user = JSON.parse(localStorage.getItem('User'))
     useEffect(() => {
         if(menuOpen){
             document.body.style.overflow = 'hidden'
@@ -49,8 +50,8 @@ const MainMenu = () => {
                         <div className="user-details">
                             <Avatar img={IMG} size='medium' />
                             <div className="details">
-                                <p className="username">@debjit</p>
-                                <p className="wallet-address">0x548976A45R2BG3</p>
+                                <p className="username">@{user.firstName}</p>
+                                <p className="wallet-address">{user.walletAddress}</p>
                             </div>
                         </div>
                     </FadeIn>

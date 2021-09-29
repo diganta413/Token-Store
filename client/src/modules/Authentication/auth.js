@@ -18,7 +18,7 @@ const Auth = (props) => {
     const [getUser] = useLazyQuery(GET_USER,{
         onCompleted: d => {
             localStorage.setItem("User", JSON.stringify(d.user))
-            props.history.push("/")
+            window.location.href = "/"
         }
     })
 

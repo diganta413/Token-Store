@@ -80,14 +80,19 @@ const App = () => {
 
     return (
         <ApolloProvider client={client}>
-            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user, setPage }}>
+            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user, setPage, setUser }}>
                 <div className="App">
                     <Router>
-                        <Header page={page}/>
+                        <Header page={page} />
                         <MainMenu />
                         <div className="page-container">
                             <Switch>
                                 <Route path="/login" exact component={Auth} />
+                                <Route path="/logout" exact render={(props) => {
+                                    localStorage.removeItem('User')
+                                    window.location.href= "/login"
+                                    return null
+                                }} />
                                 <PrivateRoute path="/" component={Home}></PrivateRoute>
                                 <PrivateRoute path="/shop" component={Home}></PrivateRoute>
                                 <PrivateRoute path="/product/:id" component={Product} exact></PrivateRoute>
