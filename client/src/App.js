@@ -29,7 +29,7 @@ const App = () => {
     const history = useHistory()
     console.log(history)
 
-    const curUser = JSON.parse(localStorage.getItem('currentUser'))
+    const curUser = JSON.parse(localStorage.getItem('User'))
 
     // Gloabl States
 
@@ -88,11 +88,9 @@ const App = () => {
                         <div className="page-container">
                             <Switch>
                                 <Route path="/login" exact component={Auth} />
-                                {/* <PrivateRoute path="/" component={Home}></PrivateRoute>
-                                <PrivateRoute path="/shop" component={Home}></PrivateRoute> */}
-                                <Route path="/" component={Home} exact></Route>
-                                <Route path="/shop" component={Shop} exact></Route>
-                                <Route path="/product/:id" component={Product} exact></Route>
+                                <PrivateRoute path="/" component={Home}></PrivateRoute>
+                                <PrivateRoute path="/shop" component={Home}></PrivateRoute>
+                                <PrivateRoute path="/product/:id" component={Product} exact></PrivateRoute>
                             </Switch>
                         </div>
                     </Router>

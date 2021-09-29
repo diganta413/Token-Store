@@ -3,11 +3,14 @@ import CustomButton from '../CustomButton/CustomButton'
 import CustomInput from '../CustomInput/CustomInput'
 import "./form.css"
 
-const CustomForm = ({ fields = [], width }) => {
+const CustomForm = ({ fields = [], width, heading, onSubmitFunc }) => {
 
     return (
-        <form className="custom-form" style={{ width: width }}>
-            <h1 style={{marginBottom: '30px', textAlign: 'left', width: "100%"}}>Enter your details</h1>
+        <form className="custom-form" style={{ width: width }}
+        onSubmit={onSubmitFunc}>
+            <h1 style={{marginBottom: '30px', textAlign: 'left', width: "100%"}}>
+                Enter your details
+            </h1>
             {fields.map(f => (
                 <CustomInput 
                     placeholder={f.ph}

@@ -4,7 +4,8 @@ export const GET_NONCE = gql`
 	mutation($address: String!){
 		getNonce(address: $address){
 			nonce,
-			status
+			status,
+			userId
 		}
 	}
 `
@@ -39,7 +40,11 @@ export const CREATE_USER = gql`
 	mutation($firstName: String!,$lastName: String!,$email: String!,$address: String!){
 		authenticate(firstName: $firstName,lastName: $lastName,email: $email,address: $address){
 			id,
-			firstName
+			firstName,
+			lastName,
+			walletAddress,
+			email,
+			isAdmin
 		}
 	}
 `

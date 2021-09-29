@@ -15,6 +15,7 @@ export const GET_PRODUCT = gql`
 export const GET_USER = gql`
 	query User($id: ID!){
 		user(id: $id){
+			id,
 			firstName,
 			lastName,
 			email,

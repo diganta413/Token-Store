@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({component: Component, ...rest}) => {
 
-    const curUser = JSON.parse(localStorage.getItem('currentUser'))
+    const curUser = JSON.parse(localStorage.getItem('User'))
 
     return (
         <div>
