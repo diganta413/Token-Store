@@ -51,16 +51,21 @@ export const CREATE_USER = gql`
 
 export const DELETE_USER = gql`
 	mutation($id: ID!){
-		delete(id: $id){
+		deleteUser(id: $id){
 			id
 		}
 	}
 `
 
 export const UPDATE_USER = gql`
-	mutation($id: ID!,$firstName: String!,$lastName: String!,$email: String!,$address: String!){
-		update(id: $id,firstName: $firstName,lastName: $lastName,email: $email,address: $address){
+	mutation($id: ID!,$firstName: String!,$lastName: String!,$email: String!){
+		update(id: $id,firstName: $firstName,lastName: $lastName,email: $email){
 			id
+			firstName
+			lastName
+			email
+			walletAddress
+			isAdmin
 		}
 	}
 `

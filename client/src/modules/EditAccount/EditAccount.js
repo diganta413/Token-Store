@@ -4,10 +4,14 @@ import "./edit.css"
 import Avatar from '../../components/Avatar';
 import IMG from "../../assets/avatar.jpeg"
 import CustomInput from '../../components/CustomInput/CustomInput';
+import { useMutation } from '@apollo/client';
+import { DELETE_USER, UPDATE_USER } from '../../graphql/Mutation';
 
 const EditAccount = () => {
     const { setPage } = useContext(GlobalContext)
     const user = JSON.parse(localStorage.getItem("User"))
+    const [update] = useMutation(UPDATE_USER)
+    const [deleteUser] = useMutation(DELETE_USER)
 
 
     const [fname, setfname] = useState(user.firstName)
@@ -17,6 +21,32 @@ const EditAccount = () => {
     useEffect(() => {
         setPage("Edit")
     }, [])
+
+    const updateAccount = async () => {
+        if ((fname !== user.firstName && fname !== "")
+            || (lname !== user.lastName && lname !== "")
+            || (email !== user.email && email !== "")) {
+            const data = {
+                id: user.id,
+                firstName: fname,
+                lastName: lname,
+                email: email
+            }
+            let res = await update({ variables: data })
+            localStorage.setItem("User", JSON.stringify(res.data.update))
+        }
+        else{
+            alert("Fields are empty or you are entering previous value.")
+        }
+    }
+
+    const deleteAccount = async () => {
+        await deleteUser({variables: {id: user.id}})
+        .then(res => {
+            localStorage.removeItem("User")
+            window.location.href = "/login"
+        })
+    }
 
     return (
         <div className="edit-container">
@@ -31,8 +61,17 @@ const EditAccount = () => {
                     value={lname} setValue={setlname} />
                 <CustomInput placeHolder="Email" style={{ marginBottom: "16px" }}
                     value={email} setValue={setemail} />
-                <CustomInput placeHolder="Wallet Address" style={{ marginBottom: "16px" }} 
-                value={user.walletAddress} contentEditable={false} />
+                <CustomInput placeHolder="Wallet Address" style={{ marginBottom: "16px" }}
+                    value={user.walletAddress} contentEditable={false} />
+
+                <div className="btn-container">
+                    <button className="delete"
+                    onClick={deleteAccount}
+                    >Delete Account</button>
+                    <button className="update"
+                        onClick={updateAccount}
+                    >Update Account</button>
+                </div>
             </div>
         </div>
     )

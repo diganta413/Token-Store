@@ -58,9 +58,7 @@ const Mutation = new GraphQLObjectType({
                 id: { type: new GraphQLNonNull(GraphQLID) },
                 firstName: { type: new GraphQLNonNull(GraphQLString) },
                 lastName: { type: new GraphQLNonNull(GraphQLString) },
-                email: { type: new GraphQLNonNull(GraphQLString) },
-                address: { type: new GraphQLNonNull(GraphQLString) },
-                isAdmin: { type: new GraphQLNonNull(GraphQLBoolean) }
+                email: { type: new GraphQLNonNull(GraphQLString) }
             },
             async resolve(parent, args) {
                 if (!args.id) return;
@@ -69,15 +67,13 @@ const Mutation = new GraphQLObjectType({
                     id: args.id,
                     firstName: args.firstName,
                     lastName: args.lastName,
-                    email: args.email,
-                    walletAddress: args.address,
-                    isAdmin: args.isAdmin
+                    email: args.email
                 },{ new: true })
 
                 return res
             }
         },
-        delete: { // Delete user account
+        deleteUser: { // Delete user account
             type: UserType,
             args: {
                 id: { type: new GraphQLNonNull(GraphQLID) }

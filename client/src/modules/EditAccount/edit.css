@@ -5,6 +5,19 @@
     grid-template-columns: 1fr 2fr;
 }
 
+@media (max-width: 576px) {
+    .edit-container{
+        display: block;
+    }
+
+    .edit-container .pic{
+        margin: 0 0 20px 0 !important;
+    }
+    .edit-container .fields{
+        margin: 0 !important;
+    }
+}
+
 .edit-container .pic,
 .edit-container .fields{
     height: fit-content;
@@ -18,4 +31,32 @@
     height: 260px;
     margin-right: 22px;
     border-radius: 12px;
+}
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.btn-container button{
+    width: 50%;
+    padding: 10px 16px;
+    font-size: 18px;
+    border-radius: 4px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn-container .delete{
+    background-color: #ff533c;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-container .update{
+    background-color: #fff34f;
+    color: #1b1b1b;
+    margin-left: 10px;
 }
