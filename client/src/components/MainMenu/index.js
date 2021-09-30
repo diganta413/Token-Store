@@ -34,7 +34,7 @@ const MainMenu = () => {
         },
         {
             name: 'Edit Account',
-            path: '/edit'
+            path: '/edit/user'
         },
         {
             name: 'Log Out',

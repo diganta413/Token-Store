@@ -1,0 +1,21 @@
+.edit-container{
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.edit-container .pic,
+.edit-container .fields{
+    height: fit-content;
+}
+
+.edit-container .pic{
+    background-color: #2c2c2c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
+    margin-right: 22px;
+    border-radius: 12px;
+}

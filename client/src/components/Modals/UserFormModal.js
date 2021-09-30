@@ -30,6 +30,7 @@ const UserFormModal = (props) => {
             .then(res => res.data.authenticate)
             .catch(err => console.log(err))
         localStorage.setItem("User", JSON.stringify(res))
+        window.location.href = "/"
     }
 
     return (

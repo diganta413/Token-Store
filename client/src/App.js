@@ -15,6 +15,7 @@ import {
 } from "@apollo/client";
 import Shop from './modules/Shop/shop'
 import Product from './modules/Product/product'
+import EditAccount from './modules/EditAccount/EditAccount'
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000/graphql',
@@ -93,9 +94,10 @@ const App = () => {
                                     window.location.href= "/login"
                                     return null
                                 }} />
-                                <PrivateRoute path="/" component={Home}></PrivateRoute>
-                                <PrivateRoute path="/shop" component={Home}></PrivateRoute>
+                                <PrivateRoute path="/" exact component={Home}></PrivateRoute>
+                                <PrivateRoute path="/shop" exact component={Shop}></PrivateRoute>
                                 <PrivateRoute path="/product/:id" component={Product} exact></PrivateRoute>
+                                <PrivateRoute path="/edit/user" exact component={EditAccount}></PrivateRoute>
                             </Switch>
                         </div>
                     </Router>

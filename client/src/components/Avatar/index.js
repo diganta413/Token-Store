@@ -12,7 +12,7 @@ const Avatar = ({ img, size }) => {
 
     const small = { width: '36px', height: '36px' }
     const medium = { width: '70px', height: '70px' }
-    const large = { width: '120px', height: '120px' }
+    const large = { width: '140px', height: '140px' }
 
     return (
         <div className="avatar-container"
