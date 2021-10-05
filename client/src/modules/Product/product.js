@@ -9,6 +9,7 @@ import ProductImg from "../../assets/pr1.jpg"
 import "./product.css"
 import Counter from '../../components/Counter/Counter'
 import CustomButton from '../../components/CustomButton/CustomButton'
+import {useHistory} from "react-router-dom"  
 
 const Product = () => {
 
@@ -17,10 +18,15 @@ const Product = () => {
     const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id: id } })
 
     const [count, setCount] = useState(1)
+	let history = useHistory()
 
     useEffect(() => {
         setPage(`Product - ${id}`)
     }, [])
+
+	const pay = () => {
+		history.push(`/${id}/payment`)
+	}
 
     return (
         <div className="product-page">
@@ -45,7 +51,7 @@ const Product = () => {
                         <p style={{marginTop: '20px', fontSize: '22px'}}>
                             Total tokens required: {(count*Number(data.product.price)).toFixed(2)}
                         </p>
-                        <CustomButton label="Buy" margin="20px 0" width="100%"/>
+                        <CustomButton label="Buy" margin="20px 0" width="100%" action={pay}/>
                     </div>
                 </>
             ) : <Error message={"Unable to fetch products."} />
