@@ -17,6 +17,8 @@ import Shop from './modules/Shop/shop'
 import Product from './modules/Product/product'
 import EditAccount from './modules/EditAccount/EditAccount'
 import PaymentPage from "./modules/PaymentPage/PaymentPage"
+import Payment from "./contracts/Payment.json";
+import Dai from "./contracts/Dai.json";
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000/graphql',
@@ -26,7 +28,7 @@ const client = new ApolloClient({
 
 const App = () => {
 
-    const [web3, setWeb3] = useState(null)
+    
 
     const history = useHistory()
 
@@ -38,25 +40,41 @@ const App = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [user, setUser] = useState(null)
     const [page, setPage] = useState('Home')
+    const [web3, setWeb3] = useState(null)
+    const [paymentContract, setPaymentContract] = useState(null)
+    const [daiContract, setDaiContract] = useState(null)
 
     useEffect(() => {
         const connect = async () => {
             try {
                 // Get network provider and web3 instance.
-                // const web3 = await getWeb3();
+                const web3 = await getWeb3();
 
                 // Use web3 to get the user's accounts.
                 const account = curUser.walletAddress
 
                 // Get the contract instance.
-                // const networkId = await web3.eth.net.getId();
-                // const deployedNetwork = SimpleStorageContract.networks[networkId];
-                // const instance = new web3.eth.Contract(
-                //     SimpleStorageContract.abi,
-                //     deployedNetwork && deployedNetwork.address,
-                // );
+                const networkId = await web3.eth.net.getId();
+
+                // For payment contract
+                const deployedNetwork_payment = Payment.networks[networkId];
+                const payment_instance = new web3.eth.Contract(
+                    Payment.abi,
+                    deployedNetwork_payment && deployedNetwork_payment.address,
+                );
+
+                // For dai contract
+                const deployedNetwork_dai = Dai.networks[networkId];
+                const dai_instance = new web3.eth.Contract(
+                    Payment.abi,
+                    deployedNetwork_dai && deployedNetwork_dai.address,
+                );
 
                 // Set state
+
+                setPaymentContract(payment_instance)
+                setDaiContract(dai_instance)
+                setWeb3(web3)
 
             } catch (error) {
                 console.error(error);
@@ -64,7 +82,6 @@ const App = () => {
         }
 
         if(curUser) connect()
-
     }, [])
 
     // if (!web3) {
@@ -79,7 +96,7 @@ const App = () => {
 
     return (
         <ApolloProvider client={client}>
-            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user, setPage, setUser }}>
+            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user, setPage, setUser, setWeb3 }}>
                 <div className="App">
                     <Router>
                         <Header page={page} />
