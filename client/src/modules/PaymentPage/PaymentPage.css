@@ -1,0 +1,15 @@
+.PaymentPage{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.PaymentPage .ProductDetails{
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	flex: 0.6;
+	width: 100%;
+}
+.PaymentPage .PaymentDetails{
+	flex: 0.4;
+}
