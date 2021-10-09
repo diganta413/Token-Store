@@ -28,9 +28,9 @@ const App = () => {
     const [web3, setWeb3] = useState(null)
 
     const history = useHistory()
-    console.log(history)
 
     const curUser = JSON.parse(localStorage.getItem('User'))
+    console.log(curUser)
 
     // Gloabl States
 
@@ -42,10 +42,10 @@ const App = () => {
         const connect = async () => {
             try {
                 // Get network provider and web3 instance.
-                const web3 = await getWeb3();
+                // const web3 = await getWeb3();
 
                 // Use web3 to get the user's accounts.
-                const accounts = await web3.eth.getAccounts();
+                const account = curUser.walletAddress
 
                 // Get the contract instance.
                 // const networkId = await web3.eth.net.getId();
@@ -55,17 +55,14 @@ const App = () => {
                 //     deployedNetwork && deployedNetwork.address,
                 // );
 
-                // Set web3, accounts, and contract to the state, and then proceed with an
-                // example of interacting with the contract's methods.
-                // this.setState({ web3, accounts, contract: instance }, this.runExample);
-            } catch (error) {
-                // Catch any errors for any of the above operations.
+                // Set state
 
+            } catch (error) {
                 console.error(error);
             }
         }
 
-        connect()
+        if(curUser) connect()
 
     }, [])
 

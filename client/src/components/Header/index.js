@@ -13,7 +13,6 @@ const Header = (props) => {
     let pageName = props.page
 
     const user = JSON.parse(localStorage.getItem('User'))
-    console.log(user)
 
     // useEffect(() => {
     //     if(curUser && !user){
