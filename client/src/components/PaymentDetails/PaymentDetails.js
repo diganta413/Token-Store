@@ -13,7 +13,9 @@ const ProductDetails = (props) => {
 		<div className="Details_payment">
 			<p>No of products :- {props.products}</p>
 			<p>No of tokens :- {props.tokens}</p>
-            <CustomButton label="Pay" margin="25px 0" width="100%" action={pay}/>
+            <CustomButton 
+			label="Pay" 
+			margin="16px 0 0 0" width="100%" action={pay}/>
 		</div>
 	)
 }
