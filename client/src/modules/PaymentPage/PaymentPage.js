@@ -22,7 +22,7 @@ const PaymentPage = () => {
 	}, [])
 
 	return (
-		<div className="PaymentPage">
+		<div className="payment-container">
 			{loading ? <Spinner /> : (
 				<>
 					<div className="ProductDetails">

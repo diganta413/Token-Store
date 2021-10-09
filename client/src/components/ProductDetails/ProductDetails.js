@@ -7,7 +7,7 @@ const ProductDetails = (props) => {
 	return (
 		<div className="Details">
 			<img src={props.img} alt="Product Image" />
-			<div className="pd-details">
+			<div className="pd-info">
 				<p>{props.product.name}</p>
 				<p>{props.product.category}</p>
 				<p>{props.product.desc}</p>
