@@ -19,6 +19,7 @@ import EditAccount from './modules/EditAccount/EditAccount'
 import PaymentPage from "./modules/PaymentPage/PaymentPage"
 import Payment from "./contracts/Payment.json";
 import Dai from "./contracts/Dai.json";
+import Dashboard from './modules/Dashboard/dashboard'
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000/graphql',
@@ -114,6 +115,7 @@ const App = () => {
                                 <PrivateRoute path="/product/:id" component={Product} exact></PrivateRoute>
                                 <PrivateRoute path="/edit/user" exact component={EditAccount}></PrivateRoute>
 								<PrivateRoute path="/:prod_id/payment" exact component={PaymentPage}></PrivateRoute>
+                                <PrivateRoute path="/dashboard" component={Dashboard} exact></PrivateRoute>
                             </Switch>
                         </div>
                     </Router>

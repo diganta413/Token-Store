@@ -4,8 +4,9 @@ const payment_model = require("../models/Payment")
 const provider = new Web3.providers.HttpProvider( "http://127.0.0.1:8545" );
 const web3 = new Web3(provider);
 
-function updatePayment() {
+async function updatePayment() {
 	const address = web3.eth.getAccounts()
+	const networkId = await web3.eth.net.getId();
 	const deployedNetwork = paymentProcessor.networks[networkId];
       const payment = new web3.eth.Contract(
        		paymentProcessor.abi,
@@ -28,4 +29,4 @@ function updatePayment() {
 		}
 
 
-module.exports = update
+module.exports = updatePayment

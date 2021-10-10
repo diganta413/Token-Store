@@ -1,0 +1,43 @@
+.right-bar{
+    padding: 10px;
+    min-width: 240px;
+    background-image: radial-gradient(circle at top left,#ffae00,#ff5739);
+    height: calc(100vh - 100px);
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.right-bar.expand{
+    height: 200px;
+}
+
+.right-bar-options{
+    margin-top: 16px;
+    padding: 0;
+}
+
+.right-bar-options li{
+    text-align: start;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: 0.5s;
+}
+
+.right-bar-options li:hover{
+    transform: scale(1.1);
+    padding: 6px 4px;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #000;
+}
+
+@media (max-width: 900px) {
+    .right-bar{
+        height: 44px;
+        margin-bottom: 16px;
+        overflow-y: hidden;
+        transition: 0.5s;
+    }
+}

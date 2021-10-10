@@ -19,7 +19,7 @@ const MainMenu = () => {
         }
     }, [menuOpen])
 
-    const menuOptions = [
+    let menuOptions = [
         {
             name: 'Home',
             path: '/'
@@ -41,6 +41,13 @@ const MainMenu = () => {
             path: '/logout'
         }
     ]
+
+    if(!user.isAdmin) {
+        let lOpt = menuOptions.slice(3, 5)
+        menuOptions = menuOptions.slice(0, 3)
+        menuOptions.push({name: 'Dashboard', path: '/dashboard'})
+        menuOptions = menuOptions.concat(lOpt)
+    }
 
     return (
         <div className={`main-menu-container ${menuOpen ? 'open' : ''}`}>

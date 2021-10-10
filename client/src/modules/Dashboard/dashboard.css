@@ -1,0 +1,30 @@
+.dashboard-container{
+    display: flex;
+    column-gap: 16px;
+}
+
+.ds-container{
+    overflow-y: scroll;
+    height: calc(100vh - 160px);
+    padding-right: 4px;
+    min-width: calc(100vw - 288px);
+}
+
+.info-sec{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 16px;
+}
+
+.info-box{
+    background-color: #1f1f1f;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 6px;
+    height: 220px;
+    border: 1px solid black;
+
+}
