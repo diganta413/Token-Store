@@ -42,7 +42,7 @@ const MainMenu = () => {
         }
     ]
 
-    if(!user.isAdmin) {
+    if(user && !user.isAdmin) {
         let lOpt = menuOptions.slice(3, 5)
         menuOptions = menuOptions.slice(0, 3)
         menuOptions.push({name: 'Dashboard', path: '/dashboard'})

@@ -29,7 +29,7 @@ const PaymentPage = () => {
 						<ProductDetails img={ProductImg} product={data.product} />
 					</div>
 					<div className="PaymentDetails">
-						<PaymentDetails products="1" tokens={data.product.price} />
+						<PaymentDetails products="1" tokens={data.product.price} product={data.product} />
 					</div>
 				</>
 			)}
