@@ -67,7 +67,7 @@ const App = () => {
                 // For dai contract
                 const deployedNetwork_dai = Dai.networks[networkId];
                 const dai_instance = new web3.eth.Contract(
-                    Payment.abi,
+                    Dai.abi,
                     deployedNetwork_dai && deployedNetwork_dai.address,
                 );
 
@@ -97,7 +97,7 @@ const App = () => {
 
     return (
         <ApolloProvider client={client}>
-            <GlobalContext.Provider value={{ menuOpen, setMenuOpen, user, setPage, setUser, setWeb3 }}>
+            <GlobalContext.Provider value={{ paymentContract, daiContract, menuOpen, setMenuOpen, user, setPage, setUser, setWeb3 }}>
                 <div className="App">
                     <Router>
                         <Header page={page} />

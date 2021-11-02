@@ -1,71 +1,28 @@
-import React,{useState,useEffect} from "react"
+import React,{useState,useEffect, useContext} from "react"
 import CustomButton from "../CustomButton/CustomButton"
 import "./PaymentDetails.css"
 import axios from "axios"
-import getWeb3 from "../../getWeb3"
-import Payment from "../../contracts/Payment.json"
-import Dai from "../../contracts/Dai.json"
+import { GlobalContext } from "../../utils/Context"
 
 const ProductDetails = (props) => {
+    const {paymentContract, daiContract} = useContext(GlobalContext)
 	const curUser = localStorage.getItem("User")
-	const [PaymentContract,setPaymentContract] = useState()
-	const [DaiContract,setDaiContract] = useState()
-	const [Web3,setWeb3] = useState()
-	console.log(props.product)
-	
-    useEffect(() => {
-        const connect = async () => {
-            try {
-
-                // Get network provider and web3 instance.
-                const web3 = await getWeb3();
-                // Use web3 to get the user's accounts.
-                const account = curUser.walletAddress
-
-                // Get the contract instance.
-                const networkId = await web3.eth.net.getId();
-
-                // For payment contract
-                const deployedNetwork_payment = Payment.networks[networkId];
-                const payment_instance = new web3.eth.Contract(
-                    Payment.abi,
-                    deployedNetwork_payment && deployedNetwork_payment.address,
-                );
-
-                // For dai contract
-                const deployedNetwork_dai = Dai.networks[networkId];
-                const dai_instance = new web3.eth.Contract(
-                    Dai.abi,
-                    deployedNetwork_dai && deployedNetwork_dai.address,
-                );
-
-                // Set state
-
-                setPaymentContract(payment_instance)
-                setDaiContract(dai_instance)
-                setWeb3(web3)
-
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        if(curUser) 
-			connect()
-    }, [])
 
 	const pay = async () =>  {
+        if(!daiContract) {
+            alert("Contract not found.")
+            return
+        }
 		 
-		const check = await DaiContract.approve(PaymentContract.address,props.product.price)
+		const check = await daiContract.methods.approve(paymentContract.address,props.product.price)
 		if(check)
 		{
-			const res = await axios.post(`http://127.0.0.1:4000/${props.product.id}/create`,{
+			const res = await axios.post(`http://127.0.0.1:5000/payment/${props.product.id}/create`,{
 				tokens: props.product.price
 			})
 			const paymentId = res.data.paymentId;
-			PaymentContract.pay(props.product.price,paymentId)
-			.then((res) => alert("Payment Done"))
-			.catch((err) => console.log(err))
+			const response = await paymentContract.methods.pay(props.product.price,paymentId)
+            console.log(response)
 		}
 		console.log(check)
 	}
