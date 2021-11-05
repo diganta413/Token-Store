@@ -34,7 +34,6 @@ const App = () => {
     const history = useHistory()
 
     const curUser = JSON.parse(localStorage.getItem('User'))
-    console.log(curUser)
 
     // Gloabl States
 
@@ -50,7 +49,6 @@ const App = () => {
             try {
                 // Get network provider and web3 instance.
                 const web3 = await getWeb3();
-
                 // Use web3 to get the user's accounts.
                 const account = curUser.walletAddress
 
@@ -97,7 +95,7 @@ const App = () => {
 
     return (
         <ApolloProvider client={client}>
-            <GlobalContext.Provider value={{ paymentContract, daiContract, menuOpen, setMenuOpen, user, setPage, setUser, setWeb3 }}>
+            <GlobalContext.Provider value={{ paymentContract, daiContract, menuOpen, setMenuOpen, user, setPage, setUser, setWeb3, web3 }}>
                 <div className="App">
                     <Router>
                         <Header page={page} />
