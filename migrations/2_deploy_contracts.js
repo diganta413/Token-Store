@@ -7,7 +7,7 @@ module.exports = async function (deployer, network, addresses) {
     console.log(network)
     await deployer.deploy(Dai)
     const dai = await Dai.deployed()
-    console.log(dai.address)
+    console.log(dai.address, customer)
     await dai.faucet(customer, web3.utils.toWei('10000'))
     await deployer.deploy(Payment, owner, dai.address)
   }

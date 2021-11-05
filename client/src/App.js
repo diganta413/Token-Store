@@ -29,8 +29,6 @@ const client = new ApolloClient({
 
 const App = () => {
 
-    
-
     const history = useHistory()
 
     const curUser = JSON.parse(localStorage.getItem('User'))
@@ -82,10 +80,6 @@ const App = () => {
 
         if(curUser) connect()
     }, [])
-
-    // if (!web3) {
-    //     return <div>Loading Web3, accounts, and contract...</div>;
-    // }
 
     useEffect(() => {
         if (curUser && !user) {

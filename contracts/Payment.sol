@@ -23,6 +23,7 @@ contract Payment{
     // Public payment function
     
     function pay(uint amount, string memory paymentID) public {
+        require(daiToken.balanceOf(msg.sender) >= amount, 'Token balance is low.');
         daiToken.transferFrom(msg.sender, owner, amount);
         emit PaymentDone(msg.sender, amount, paymentID, block.timestamp);
     }
