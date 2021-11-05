@@ -13,3 +13,12 @@
 	font-weight: bolder;
 	margin-bottom: 14px;
 }
+
+.link-button{
+	padding: 12px;
+	text-align: center;
+	border: 1px solid #00defb;
+	border-radius: 2px;
+	font-size: 18px;
+	font-weight: 600;
+}

@@ -11,6 +11,7 @@
     "ethers": "^5.5.1",
     "fortmatic": "^2.2.1",
     "graphql": "^15.5.3",
+    "moment": "^2.29.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-fade-in": "^2.0.1",

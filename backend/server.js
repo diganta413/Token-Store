@@ -4,7 +4,6 @@ const cors = require("cors")
 const config = require('dotenv').config()
 const schema = require("./schema/Schema.js")
 const mongoose = require('mongoose')
-const updatePayment = require("./Utils/UpdatePayment")
 const paymentRoute = require("./routes/payment")
 
 const app = express()
@@ -34,5 +33,3 @@ app.use("/payment",paymentRoute)
 app.listen(5000,()=> {
 	console.log("Listening to port 5000")
 } )
-
-updatePayment()

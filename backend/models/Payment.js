@@ -12,6 +12,10 @@ const schema = new mongoose.Schema({
 	},
 	paid: {
 		type: Boolean
+	},
+	date: {
+		type: Date,
+		default: Date.now
 	}
 })
 
